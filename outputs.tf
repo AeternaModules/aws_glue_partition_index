@@ -12,7 +12,7 @@ output "glue_partition_indices_database_name" {
 }
 output "glue_partition_indices_partition_index" {
   description = "Map of partition_index values across all glue_partition_indices, keyed the same as var.glue_partition_indices"
-  value       = { for k, v in aws_glue_partition_index.glue_partition_indices : k => v.partition_index if v.partition_index != null && length(v.partition_index) > 0 }
+  value       = { for k, v in aws_glue_partition_index.glue_partition_indices : k => one(v.partition_index) if v.partition_index != null && length(v.partition_index) > 0 }
 }
 output "glue_partition_indices_region" {
   description = "Map of region values across all glue_partition_indices, keyed the same as var.glue_partition_indices"
